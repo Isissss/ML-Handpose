@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
- 
+
+import * as tf from '@tensorflow/tfjs';
 import * as handpose from "@tensorflow-models/handpose";
 import "./App.css";
 import data from "./data.json";
