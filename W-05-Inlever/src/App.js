@@ -4,14 +4,15 @@ import Webcam from "react-webcam";
 import * as tf from '@tensorflow/tfjs';
 import * as handpose from "@tensorflow-models/handpose";
 import "./App.css";
-import data from "./data.json";
+
 import { Pick } from "./components/Pick";
 import { TrainingButtons } from "./components/TrainingButtons";
 const types = ["steen", "papier", "schaar"]
 export function App() {
+    tf = tf
     // global variables
     const k = 3
-    const KNN = new kNear(k, data)
+    const KNN = new kNear(k)
     const modelRef = useRef(null);        // handpose
     const webcamRef = useRef(null);       // webcam
     const [score, setScore] = useState(0) // score
@@ -22,8 +23,8 @@ export function App() {
     let getPrediction
     let lastResult
     let results
-   
- 
+
+
     // detect handpose (called by request annimationframe)
 
 
@@ -32,13 +33,13 @@ export function App() {
         const load = async () => {
             modelRef.current = await handpose.load();
             console.log("Handpose loaded")
- 
+
         };
 
         load();
     }, []);
 
- 
+
     useEffect(() => {
         if (!playerChoice && !computerChoice) return
 

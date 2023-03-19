@@ -1,4 +1,4 @@
- 
+
 class kNear {
     constructor(k, data) {
         this.k = k
@@ -10,7 +10,7 @@ class kNear {
     //function assumes vectors are arrays of equal length
     dist(v1, v2) {
         let sum = 0
-        v1.forEach( (val, index) => {
+        v1.forEach((val, index) => {
             sum += Math.pow(val - v2[index], 2)
         })
         return Math.sqrt(sum)
@@ -18,7 +18,7 @@ class kNear {
 
     updateMax(val, arr) {
         let max = 0
-        for(let obj of arr) {
+        for (let obj of arr) {
             max = Math.max(max, obj.d)
         }
         return max
@@ -51,7 +51,7 @@ class kNear {
                             // size of the array is correct
                             return true;
                         } else {
-                            console.log(`ERROR: learn en classify verwachten een array met numbers van dezelfde lengte, je stuurt nu een array met lengte ${v.length}, terwijl je eerder lengte ${this.array_size} gebruikt hebt.`); 
+                            console.log(`ERROR: learn en classify verwachten een array met numbers van dezelfde lengte, je stuurt nu een array met lengte ${v.length}, terwijl je eerder lengte ${this.array_size} gebruikt hebt.`);
                         }
                     } else {
                         // first value set training size
@@ -59,10 +59,10 @@ class kNear {
                         return true;
                     }
                 } else {
-                    console.log(`ERROR: learn en classify verwachten een array met numbers, je stuurt nu array met ${typeof v[0]}.`);    
+                    console.log(`ERROR: learn en classify verwachten een array met numbers, je stuurt nu array met ${typeof v[0]}.`);
                 }
             } else {
-                console.log("ERROR: learn en classify verwachten een array met numbers, je stuurt nu lege array.");    
+                console.log("ERROR: learn en classify verwachten een array met numbers, je stuurt nu lege array.");
             }
         } else {
             console.log(`ERROR: learn en classify verwachten een array met numbers, je stuurt nu geen array, maar ${typeof v}.`);
@@ -89,7 +89,7 @@ class kNear {
         let voteBloc = []
         let maxD = 0
 
-        for(let obj of this.training) {
+        for (let obj of this.training) {
             let o = { d: this.dist(v, obj.v), vote: obj.lab }
             if (voteBloc.length < this.k) {
                 voteBloc.push(o);
@@ -115,7 +115,7 @@ class kNear {
             }
         }
         let votes = []
-        for(let el of voteBloc) {
+        for (let el of voteBloc) {
             votes.push(el.vote)
         }
         return this.mode(votes)
@@ -124,7 +124,7 @@ class kNear {
     save() {
         localStorage.setItem('training', JSON.stringify(this.training))
     }
-    
+
     clear() {
         this.training = []
         this.array_size = -1
