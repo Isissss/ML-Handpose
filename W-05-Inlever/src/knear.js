@@ -1,8 +1,8 @@
 
 class kNear {
-    constructor(k, data) {
+    constructor(k) {
         this.k = k
-        this.training = data || []
+        this.training = []
         this.array_size = -1
     }
 

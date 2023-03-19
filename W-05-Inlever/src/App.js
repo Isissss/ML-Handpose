@@ -1,15 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
-import * as tf from '@tensorflow/tfjs';
-import * as handpose from "@tensorflow-models/handpose";
 import "./App.css";
 
 import { Pick } from "./components/Pick";
 import { TrainingButtons } from "./components/TrainingButtons";
 const types = ["steen", "papier", "schaar"]
 export function App() {
-    tf = tf
+    tf.setBackend('cpu');
     // global variables
     const k = 3
     const KNN = new kNear(k)
